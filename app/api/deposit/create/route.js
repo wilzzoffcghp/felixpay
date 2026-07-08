@@ -31,7 +31,7 @@ export async function POST(req) {
   const kodeTrx = generateTransactionId('FP'), expireTime = new Date(Date.now() + 3600000);
 
   try {
-    const url = `https://orderhostid.my.id/api/createpayment?apikey=${process.env.ORDERKUOTA_API_KEY}&username=${process.env.ORDERKUOTA_USERNAME}&amount=${totalBayar}&token=${process.env.ORDERKUOTA_TOKEN}`;
+    const url = `https://orkut.neofetchoffc.com/?action=createpayment&apikey=${process.env.ORDERKUOTA_API_KEY}&username=${process.env.ORDERKUOTA_USERNAME}&amount=${totalBayar}&token=${process.env.ORDERKUOTA_TOKEN}`;
     const r = await axios.get(url, { timeout: 15000 });
     if (!r.data?.status) throw new Error(r.data?.message || 'Gagal membuat QRIS');
     const qrImageUrl = r.data.result?.qris_image;
