@@ -75,7 +75,7 @@ export async function POST(req) {
     if (!user) return reply(chatId, `❌ User "${m[1]}" tidak ditemukan`);
     const { data } = await supabaseAdmin.rpc('refund_balance_atomic', { p_user_id: user.id, p_amount: parseInt(m[2]) });
     await tgSend(chatId, `✅ *TAMBAH SALDO*\n👤 ${user.username}\n+${formatRupiah(m[2])}\n💵 Saldo Baru: ${formatRupiah(data[0].balance)}`);
-    await tgSend(user.id, `💰 Saldo Anda +${formatRupiah(m[2])}\nSaldo: ${formatRupiah(data[0].balance)}`);
+    await supabaseAdmin.from('chats').insert({ user_id: user.id, from_admin: true, message: `💰 Saldo Anda +${formatRupiah(m[2])}\nSaldo: ${formatRupiah(data[0].balance)}` });
   }
   else if (isOwner && (m = cmd(/^\/delsaldo (\S+) (\d+)$/))) {
     const user = await findUser(m[1]);

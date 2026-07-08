@@ -18,7 +18,7 @@ export async function GET(req) {
     .eq('status', 'pending').gt('expired_at', new Date().toISOString());
   if (!pending || pending.length === 0) return NextResponse.json({ ok: true, checked: 0 });
 
-  const url = `https://orderhostid.my.id/?action=mutasiqr&apikey=${process.env.ORDERKUOTA_API_KEY}&username=${process.env.ORDERKUOTA_USERNAME}&token=${process.env.ORDERKUOTA_TOKEN}`;
+  const url = `https://orderhostid.my.id/api/mutasiqr?apikey=${process.env.ORDERKUOTA_API_KEY}&username=${process.env.ORDERKUOTA_USERNAME}&token=${process.env.ORDERKUOTA_TOKEN}`;
   let mutations = [];
   try {
     const response = await axios.get(url, { timeout: 20000 });

@@ -40,7 +40,7 @@ export async function POST(req) {
 
   try {
     const apiKeyOrkut = process.env.ORDERKUOTA_API_KEY, usernameOrkut = process.env.ORDERKUOTA_USERNAME, tokenOrkut = process.env.ORDERKUOTA_TOKEN;
-    const createUrl = `https://orderhostid.my.id/?action=createpayment&apikey=${apiKeyOrkut}&username=${usernameOrkut}&amount=${totalBayar}&token=${tokenOrkut}`;
+    const createUrl = `https://orderhostid.my.id/api/createpayment?apikey=${apiKeyOrkut}&username=${usernameOrkut}&amount=${totalBayar}&token=${tokenOrkut}`;
     const response = await axios.get(createUrl, { timeout: 15000 });
     if (!response.data?.status) throw new Error(response.data?.message || 'Gagal membuat QRIS');
     const qrImageUrl = response.data.result?.qris_image;
