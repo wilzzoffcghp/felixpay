@@ -247,7 +247,7 @@
         <label>Nominal Penarikan</label>
         <div class="input-wrap">
           <span class="prefix">Rp</span>
-          <input type="number" id="instantAmount" placeholder="Minimal 10.000" min="10000" inputmode="numeric" oninput="updateFeePreview()">
+          <input type="number" id="instantAmount" placeholder="Minimal 5.000" min="5000" inputmode="numeric" oninput="updateFeePreview()">
         </div>
       </div>
 
@@ -385,7 +385,7 @@
             <i class="fa-solid fa-circle-info" style="color:var(--primary)"></i>
             Biaya Admin
           </span>
-          <span class="val">Rp 1.000</span>
+          <span class="val">Rp 2.000</span>
         </div>
         <div class="fee-row" style="font-size:11px;color:var(--text3)">
           <span>Waktu proses</span>
@@ -515,7 +515,7 @@ function updateFeePreview() {
   const feeData = instantFees[op];
   const preview = document.getElementById('feePreview');
 
-  if (!amount || amount < 10000 || !feeData) { preview.style.display='none'; return; }
+  if (!amount || amount < 5000 || !feeData) { preview.style.display='none'; return; }
 
   document.getElementById('previewAmount').textContent  = formatIDR(amount);
   document.getElementById('previewMarkup').textContent  = formatIDR(feeData.markup_fee);
@@ -533,8 +533,8 @@ async function submitInstant() {
 
   alertDiv.innerHTML = '';
 
-  if (isNaN(amount)||amount < 10000) {
-    alertDiv.innerHTML='<div class="alert alert-error"><i class="fa-solid fa-circle-xmark"></i> Minimal penarikan Rp 10.000</div>';
+  if (isNaN(amount)||amount < 5000) {
+    alertDiv.innerHTML='<div class="alert alert-error"><i class="fa-solid fa-circle-xmark"></i> Minimal penarikan Rp 5.000</div>';
     return;
   }
   if (!phone) {
@@ -668,8 +668,8 @@ async function submitManual() {
 
   alertDiv.innerHTML = '';
 
-  if (isNaN(amount)||amount < 10000) {
-    alertDiv.innerHTML='<div class="alert alert-error"><i class="fa-solid fa-circle-xmark"></i> Minimal penarikan Rp 10.000</div>';
+  if (isNaN(amount)||amount < 5000) {
+    alertDiv.innerHTML='<div class="alert alert-error"><i class="fa-solid fa-circle-xmark"></i> Minimal penarikan Rp 5.000</div>';
     return;
   }
   if (amount > currentUser.balance) {
@@ -733,3 +733,4 @@ function showResultManual(wd) {
 </script>
 </body>
 </html>
+
